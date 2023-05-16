@@ -16,3 +16,4 @@ Esto cuenta con :
 - ftp
 - ssh
 - interfaz web
+# sexto-panel
