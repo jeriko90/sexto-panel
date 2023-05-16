@@ -1,0 +1,71 @@
+version: "3"
+services:
+  apache-cliente1:
+    build:
+      context: ./multicuenta/cliente1
+      dockerfile: Dockerfile
+    ports:
+      - "82:80"
+    volumes:
+      - ./multicuenta/cliente1/conf/hstienda.tk.conf:/etc/apache2/sites-available/000-default.conf
+      - ./multicuenta/cliente1/public_html:/var/www/html
+    depends_on:
+      - php-cliente1
+      - mysql-cliente1
+
+  apache-cliente2:
+    build:
+      context: ./multicuenta/cliente2
+      dockerfile: Dockerfile
+    ports:
+      - "83:80"
+    volumes:
+      - ./multicuenta/cliente2/conf/hausegamming.tk.conf:/etc/apache2/sites-available/000-default.conf
+      - ./multicuenta/cliente2/public_html:/var/www/html
+    depends_on:
+      - php-cliente2
+      - mysql-cliente2
+
+  php-cliente1:
+    build:
+      context: ./multicuenta/cliente1/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./multicuenta/cliente1/conf/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./multicuenta/cliente1/public_html:/var/www/html
+
+  php-cliente2:
+    build:
+      context: ./multicuenta/cliente2/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./multicuenta/cliente2/conf/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./multicuenta/cliente2/public_html:/var/www/html
+
+  mysql-cliente1:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cliente1_db
+      MYSQL_USER: cliente1_user
+      MYSQL_PASSWORD: cliente1_password
+
+  mysql-cliente2:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cliente2_db
+      MYSQL_USER: cliente2_user
+      MYSQL_PASSWORD: cliente2_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    links:
+      - mysql-cliente1
+      - mysql-cliente2
+    environment:
+      PMA_HOSTS: mysql-cliente1, mysql-cliente2
+      PMA_PORTS: 3306, 3306
+      PMA_ARBITRARY: 1
