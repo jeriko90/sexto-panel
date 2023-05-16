@@ -1,0 +1,26 @@
+version: "3"
+services:
+  apache-php-clienteX:
+    build:
+      context: ./multicuenta/clienteX
+      dockerfile: Dockerfile
+    ports:
+      - "XX:80"
+    volumes:
+      - "./multicuenta/clienteX/conf/clienteX.conf:/etc/apache2/sites-available/000-default.conf"
+      - "./multicuenta/clienteX/public_html:/var/www/html"
+    depends_on:
+      - mysql-clienteX
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "clienteX_db"
+      MYSQL_USER: "clienteX_user"
+      MYSQL_PASSWORD: "clienteX_password"
+
+  mysql-clienteX:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "clienteX_db"
+      MYSQL_USER: "clienteX_user"
+      MYSQL_PASSWORD: "clienteX_password"

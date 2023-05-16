@@ -1,5 +1,9 @@
 # sexto-panel
 
+# Version 1.0.6
+Se creo un script para agregar dominios como clientes nuevos . 
+La idea es utilizar un puerto X en el 80 siempre . 
+
 # Version 1.0.0
 Creando un infraestructura de hosting y panel de control para diseñadores .
 Esto cuenta con :
