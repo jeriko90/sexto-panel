@@ -1,8 +1,11 @@
 # sexto-panel
 
+<<<<<<< HEAD
 # Version 1.0.17
 Actualizando ambos repo a php 8.2 
 
+=======
+>>>>>>> 6e237f8a63c39ceeb188ea899a1cc6f68db5ca04
 # Version 1.0.13
 Se actualizo el index.php
 
