@@ -1,0 +1,26 @@
+version: "3"
+services:
+  apache-php-hausetienda.tk:
+    build:
+      context: ./multicuenta/hausetienda.tk
+      dockerfile: Dockerfile
+    ports:
+      - "84:80"
+    volumes:
+      - "./multicuenta/hausetienda.tk/conf/hausetienda.tk.conf:/etc/apache2/sites-available/000-default.conf"
+      - "./multicuenta/hausetienda.tk/public_html:/var/www/html"
+    depends_on:
+      - mysql-hausetienda.tk
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hausetienda.tk_db"
+      MYSQL_USER: "hausetienda.tk_user"
+      MYSQL_PASSWORD: "hausetienda.tk_password"
+
+  mysql-hausetienda.tk:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hausetienda.tk_db"
+      MYSQL_USER: "hausetienda.tk_user"
+      MYSQL_PASSWORD: "hausetienda.tk_password"

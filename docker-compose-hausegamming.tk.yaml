@@ -1,0 +1,26 @@
+version: "3"
+services:
+  apache-php-hausegamming.tk:
+    build:
+      context: ./multicuenta/hausegamming.tk
+      dockerfile: Dockerfile
+    ports:
+      - "83:80"
+    volumes:
+      - "./multicuenta/hausegamming.tk/conf/hausegamming.tk.conf:/etc/apache2/sites-available/000-default.conf"
+      - "./multicuenta/hausegamming.tk/public_html:/var/www/html"
+    depends_on:
+      - mysql-hausegamming.tk
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hausegamming.tk_db"
+      MYSQL_USER: "hausegamming.tk_user"
+      MYSQL_PASSWORD: "hausegamming.tk_password"
+
+  mysql-hausegamming.tk:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hausegamming.tk_db"
+      MYSQL_USER: "hausegamming.tk_user"
+      MYSQL_PASSWORD: "hausegamming.tk_password"

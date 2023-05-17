@@ -1,0 +1,26 @@
+version: "3"
+services:
+  apache-php-hstienda.tk:
+    build:
+      context: ./multicuenta/hstienda.tk
+      dockerfile: Dockerfile
+    ports:
+      - "82:80"
+    volumes:
+      - "./multicuenta/hstienda.tk/conf/hstienda.tk.conf:/etc/apache2/sites-available/000-default.conf"
+      - "./multicuenta/hstienda.tk/public_html:/var/www/html"
+    depends_on:
+      - mysql-hstienda.tk
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hstienda.tk_db"
+      MYSQL_USER: "hstienda.tk_user"
+      MYSQL_PASSWORD: "hstienda.tk_password"
+
+  mysql-hstienda.tk:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hstienda.tk_db"
+      MYSQL_USER: "hstienda.tk_user"
+      MYSQL_PASSWORD: "hstienda.tk_password"
