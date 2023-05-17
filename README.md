@@ -1,5 +1,8 @@
 # sexto-panel
 
+# Version 1.0.13
+Se actualizo el index.php
+
 # Version 1.0.9
 No indicamos que habia 1.0.8 xD
 
@@ -26,4 +29,3 @@ Esto cuenta con :
 - ftp
 - ssh
 - interfaz web
-# sexto-panel
