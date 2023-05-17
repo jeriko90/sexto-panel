@@ -1,5 +1,8 @@
 # sexto-panel
 
+# Version 1.0.9
+No indicamos que habia 1.0.8 xD
+
 # Version 1.0.7
 Automatizado nombre de clientes nuevos
 
