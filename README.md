@@ -1,5 +1,8 @@
 # sexto-panel
 
+# Version 1.0.7
+Automatizado nombre de clientes nuevos
+
 # Version 1.0.6
 Se creo un script para agregar dominios como clientes nuevos . 
 La idea es utilizar un puerto X en el 80 siempre . 
